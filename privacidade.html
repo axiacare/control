@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Themis™ – Ambiente inteligente em necessidades jurídicas na saúde</title>
+  <meta name="description" content="Themis™ é um ambiente AxIntel™ da AxiaCare® para equipes. Gera relatórios e quesitos a partir de PDFs, com segurança, segregação por equipe e governança institucional." />
+  <style>
+    :root{
+      --brand:#196396;
+      --brand-600:#155886;
+      --text-strong:#111827;
+      --text:#0F172A;
+      --muted:#6B7280;
+      --soft:#F2F2F2;
+      --card:#FFFFFF;
+      --danger:#DC2626;
+      --radius:14px;
+      --shadow:0 8px 22px rgba(0,0,0,.08);
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{color:var(--brand-600)}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+    /* Header */
+    .site-header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5e7eb;z-index:50}
+    .header-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand a.app{font-weight:700;color:var(--text-strong);font-size:18px;letter-spacing:.2px}
+    .brand .ax-logo{display:inline-flex;align-items:center;justify-content:center}
+    .brand .ax-logo img{height:26px;display:block}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      background:var(--brand);color:#fff;border:0;border-radius:var(--radius);
+      padding:12px 18px;font-weight:600;box-shadow:var(--shadow);cursor:pointer
+    }
+    .btn:hover{background:var(--brand-600)}
+    .top-badge{
+      background:linear-gradient(90deg,#fff, var(--soft));
+      border-bottom:1px solid #e5e7eb;color:var(--muted);font-size:13px
+    }
+    .top-badge .row{display:flex;align-items:center;gap:8px;padding:8px 0}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #e5e7eb;border-radius:999px;background:#fff;color:var(--muted)}
+    /* Hero */
+    .hero{padding:56px 0 24px;background:#fff}
+    .hero h1{
+      margin:0;
+      color:var(--text-strong);
+      font-size:44px;line-height:1.15;letter-spacing:-.02em
+    }
+    .hero h2{margin:8px 0 16px;color:var(--muted);font-weight:500;font-size:20px}
+    .hero .cta{margin-top:18px}
+    /* Sections */
+    section{padding:36px 0}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{
+      background:var(--card);border:1px solid #e5e7eb;border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:18px
+    }
+    .card h3{margin:10px 0 6px;color:var(--text-strong);font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    .icon{
+      width:44px;height:44px;border-radius:12px;background:var(--soft);
+      display:inline-flex;align-items:center;justify-content:center
+    }
+    .section-title{margin:0 0 6px;font-size:28px;letter-spacing:-.01em;color:var(--text-strong)}
+    .section-sub{margin:0 0 18px;color:var(--muted)}
+    .info{
+      background:var(--soft);border:1px solid #e5e7eb;border-radius:var(--radius);
+      padding:22px
+    }
+    /* Disclosure */
+    .disclosure{
+      background:#fff5e5;border:1px solid #ffd79a;color:#8a5800;
+      border-radius:var(--radius);padding:18px;font-size:14px
+    }
+    /* Footer */
+    footer{border-top:1px solid #e5e7eb;background:#fff}
+    .footer-grid{display:grid;gap:10px;padding:18px 0;color:var(--muted);font-size:13px}
+    .footer-grid a{color:var(--brand)}
+    /* Responsive */
+    @media (max-width:1024px){.cards{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:36px}}
+    @media (max-width:640px){
+      .header-row{flex-wrap:wrap}
+      .brand a.app{font-size:16px}
+      .cards{grid-template-columns:1fr}
+      .hero{padding:36px 0 12px}
+      .hero h1{font-size:30px}
+      .hero h2{font-size:16px}
+    }
+    /* Utility */
+    .mt-8{margin-top:8px}.mt-16{margin-top:16px}.mt-24{margin-top:24px}.mt-32{margin-top:32px}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <div class="brand">
+        <a class="app" href="/" aria-label="Início Themis">Themis™</a>
+        <!-- Troque o src abaixo pelo caminho da sua logo oficial AxiaCare® -->
+        <a class="ax-logo" href="https://axcare.com.br" target="_blank" rel="noopener" aria-label="AxiaCare®">
+          <img src="assets/axia-logo.svg" alt="AxiaCare®" />
+        </a>
+      </div>
+      <nav aria-label="Ações">
+        <a class="btn" href="/acesso" title="Entrar no ambiente">Entrar no ambiente</a>
+      </nav>
+    </div>
+    <div class="top-badge">
+      <div class="container row">
+        <span class="pill" aria-label="Aviso LGPD">Ambiente interno • Dados tratados por equipe (LGPD)</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" role="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Themis</h1>
+        <h2>um ambiente inteligente em necessidades jurídicas na saúde</h2>
+        <p class="section-sub">Ambiente interno e seguro, pensado para equipes. Gera relatórios e quesitos para diferentes necessidades jurídico-médicas, com automações e motores de IA.</p>
+        <div class="cta">
+          <a class="btn" href="/acesso" title="Entrar no ambiente">Entrar no ambiente</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section aria-labelledby="como-funciona">
+      <div class="container">
+        <h2 id="como-funciona" class="section-title">Como funciona</h2>
+        <p class="section-sub">Processo seguro e eficiente em 4 etapas</p>
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <!-- Usuários -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#196396" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>1. Acesso da equipe</h3>
+            <p>A equipe entra com login institucional (ID da equipe + senha).</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <!-- Documento -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#196396" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            </div>
+            <h3>2. Envio de caso</h3>
+            <p>Envie PDFs e os dados do caso por formulário seguro.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <!-- Engrenagem/IA -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#196396" stroke-width="2"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 7.04 3.4l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06c-.45.45-.58 1.11-.33 1.82V9c0 .66.39 1.26 1 1.51.5.21 1.06.49 1.51 1H21a2 2 0 1 1 0 4h-.09c-.66 0-1.26.39-1.51 1Z"/></svg>
+            </div>
+            <h3>3. Análise IA</h3>
+            <p>A Themis™ organiza o material e estrutura pontos clínicos e técnico-jurídicos usando prompts privados versionados.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <!-- Email -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#196396" stroke-width="2"><path d="M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z"/><path d="m7 9 5 4 5-4"/></svg>
+            </div>
+            <h3>4. Entrega</h3>
+            <p>O relatório estruturado chega no e-mail institucional com protocolo do caso e registro da equipe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- O que é a Themis -->
+    <section aria-labelledby="o-que-e">
+      <div class="container">
+        <h2 id="o-que-e" class="section-title">O que é a Themis</h2>
+        <div class="info">
+          <p class="mt-8">
+            A Themis™ é um AxControl™ desenhado pela AxiaCare® para apoiar equipes em necessidades jurídicas na saúde. Combina método, visuais e inteligência (AxIntel™) para transformar documentos extensos em relatórios objetivos.
+          </p>
+          <p class="mt-8">
+            Na parte de quesitos médicos, utiliza o AxSet ACORDO™ — uma metodologia prática para construir quesitos técnicos que apoiam o jurídico e organizam a atuação clínica da equipe.
+          </p>
+          <p class="mt-8">
+            A entrega ocorre por relatórios estruturados, produzidos a partir dos PDFs enviados pelo ambiente da equipe e disponibilizados no e-mail institucional.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Por que escolher -->
+    <section aria-labelledby="pq-escolher">
+      <div class="container">
+        <h2 id="pq-escolher" class="section-title">Por que escolher a Themis</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Relatórios estruturados</h3>
+            <p>Receba em poucos minutos no seu e-mail institucional, acelerando seus processos jurídicos.</p>
+          </article>
+          <article class="card">
+            <h3>Multi-tenant por equipe</h3>
+            <p>Dados segregados por equipe, com trilha auditável e governança institucional.</p>
+          </article>
+          <article class="card">
+            <h3>IA especializada</h3>
+            <p>Linguagem clara e metodologia de quesitos, alinhadas ao trabalho do jurídico.</p>
+          </article>
+          <article class="card">
+            <h3>Ambiente institucional</h3>
+            <p>Fluxo padronizado, política de retenção e acessos definidos pela sua equipe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disclosure -->
+    <section class="container mt-16">
+      <div class="disclosure" role="note" aria-label="Importante">
+        A Themis™ não substitui análise jurídica nem avaliação clínica. É uma ferramenta de apoio para equipes institucionais, que devem revisar e validar tecnicamente as entregas. Em situações urgentes, procure avaliação presencial.
+      </div>
+    </section>
+
+    <section class="container mt-24">
+      <div class="info">
+        <div class="mt-8">
+          <a class="btn" href="/acesso" title="Entrar no ambiente">Entrar no ambiente</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" class="mt-24">
+    <div class="container footer-grid">
+      <div>Themis™ é um ambiente AxIntel™ da AxiaCare®.</div>
+      <div>© 2025 AxiaCare® • Todos os direitos reservados.</div>
+      <div>Serviço de apoio técnico; não substitui avaliação médica ou jurídica. Ambiente interno por equipe • LGPD.</div>
+      <div>Site: <a href="https://axcare.com.br" target="_blank" rel="noopener">axcare.com.br</a> • Contato LGPD: <a href="mailto:privacidade@axcare.com.br">privacidade@axcare.com.br</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
