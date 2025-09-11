@@ -1,4 +1,4 @@
-# AxControl™ – Gestão em Saúde Inteligente
+# AxControl™ – Consultoria e Gestão em Saúde Inteligente
 
 Este repositório integra a esteira oficial **AxControl™**, primeira solução estratégica da **AxiaCare® – Soluções em Saúde com Valor**.
 
