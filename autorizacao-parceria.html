@@ -24,9 +24,12 @@
       --brand-primary:#196396; --brand-accent:#2DBF7F; --brand-dark:#2d3445; --brand-off:#f8f5f0; --white:#fff;
       --text:#1b1e24; --muted:#5b6470; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08);
       --maxw:960px; --pad:24px; --focus:0 0 0 3px rgba(25,99,150,.25);
+      --ok:#0f7a48; --ok-bg:#e9f7f1; --err:#a61b1b; --err-bg:#fdecec;
     }
     *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";font-size:16px;line-height:1.6;color:var(--text);background:linear-gradient(180deg,#fff 0%,var(--brand-off) 100%);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      font-size:16px;line-height:1.6;color:var(--text);background:linear-gradient(180deg,#fff 0%,var(--brand-off) 100%);
+      padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
     img{max-width:100%;height:auto;display:block}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
     header{background:var(--white);border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:10;backdrop-filter:saturate(180%) blur(8px);padding-top:env(safe-area-inset-top)}
@@ -59,8 +62,15 @@
     .btn.ghost{background:#efefef}
     .btn:disabled{opacity:.6;cursor:not-allowed}
 
-    .toast{position:fixed;right:16px;bottom:16px;background:#fff;border:1px solid rgba(0,0,0,.1);box-shadow:var(--shadow);border-radius:10px;padding:10px 12px;display:none}
-    .toast.ok{border-color:rgba(31,157,85,.35)} .toast.err{border-color:rgba(197,48,48,.35)}
+    /* Status inline (acessível) */
+    .status{margin-top:12px;border-radius:10px;padding:10px 12px;border:1px solid transparent}
+    .status.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+    .status.err{background:var(--err-bg);border-color:var(--err);color:var(--err)}
+
+    /* Toast */
+    .toast{position:fixed;right:16px;bottom:16px;background:#fff;border:1px solid rgba(0,0,0,.18);box-shadow:var(--shadow);border-radius:10px;padding:10px 12px;display:none;z-index:9999;min-width:240px}
+    .toast.ok{border-color:rgba(15,122,72,.35)}
+    .toast.err{border-color:rgba(166,27,27,.35)}
 
     footer{margin:42px 0 24px;text-align:center}
     .footer{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px}
@@ -116,7 +126,10 @@
     <h2>4. Vigência</h2>
     <p>Vigência por prazo indeterminado, enquanto não houver revogação pela Autorizante ou comunicação da Autorizada em sentido diverso.</p>
 
-    <p class="small muted" id="docMeta">Registro técnico: versão v1.0 • hash: (a calcular)</p>
+    <!-- Linha do hash (mais profissional) -->
+    <p class="small muted" id="docMeta">Registro técnico • SHA-256: (calculando…)</p>
+    <!-- Cronômetro discreto -->
+    <p class="small muted" id="liveTimer" aria-live="off">Cronômetro: 00:00:00</p>
   </section>
 
   <section class="card">
@@ -147,6 +160,7 @@
       <button class="btn primary" id="btnSend">Enviar autorização</button>
       <button class="btn secondary" id="btnEmail">Enviar informações por e-mail</button>
       <button class="btn ghost" id="btnPrint">Salvar em PDF</button>
+      <div id="status" class="status" role="status" aria-live="polite" tabindex="-1" aria-atomic="true"></div>
     </div>
     <p class="small muted">Valide seus dados antes de enviar.</p>
   </section>
@@ -175,8 +189,16 @@
   const btnTop=document.getElementById('btnTop');
   window.addEventListener('scroll',()=>{btnTop.style.display=window.scrollY>320?'block':'none';});
   btnTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
   const toastEl=document.getElementById('toast');
   function toast(msg,type='ok'){ toastEl.textContent=msg; toastEl.className='toast '+type; toastEl.style.display='block'; setTimeout(()=>toastEl.style.display='none',4000); }
+
+  const statusEl=document.getElementById('status');
+  function setStatus(msg,type='ok'){
+    statusEl.className='status '+type;
+    statusEl.textContent=msg;
+    statusEl.focus({preventScroll:false});
+  }
 
   // ======= Hash do bloco "termo" =======
   async function sha256(message){
@@ -187,10 +209,18 @@
   async function atualizarHash(){
     const termoHtml=document.getElementById('termo').innerHTML;
     const hash=await sha256(termoHtml);
-    document.getElementById('docMeta').textContent='Registro técnico: versão v1.0 • hash: '+hash;
+    document.getElementById('docMeta').textContent='Registro técnico • SHA-256: '+hash;
     return hash;
   }
   atualizarHash();
+
+  // ======= Cronômetro discreto =======
+  (function startTimer(){
+    const el=document.getElementById('liveTimer');
+    const fmt=s=>String(s).padStart(2,'0');
+    const t0=Date.now();
+    setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);el.textContent='Cronômetro: '+fmt(s/3600|0)+':'+fmt((s%3600)/60|0)+':'+fmt(s%60);},1000);
+  })();
 
   // ======= Coleta/validação =======
   function getFormData(){
@@ -206,16 +236,31 @@
   async function sendAuthorization(){
     const btn=document.getElementById('btnSend');
     const {identificacao,documento,email,obs}=getFormData();
-    if(!identificacao||!documento||!email||!validEmail(email)){ toast('Preencha os campos obrigatórios com e-mail válido.','err'); return; }
+    if(!identificacao||!documento||!email||!validEmail(email)){
+      setStatus('Preencha os campos obrigatórios com e-mail válido.','err');
+      toast('Preencha os campos obrigatórios com e-mail válido.','err');
+      return;
+    }
     btn.disabled=true;
     try{
       const hash=await atualizarHash();
-      const payload={type:'autorizacao_parceria',timestamp:new Date().toISOString(),identificacao,documento,email,obs,hash,page_url:location.href,user_agent:navigator.userAgent};
+      const payload={
+        type:'autorizacao_parceria',
+        timestamp:new Date().toISOString(),
+        identificacao,documento,email,obs,hash,
+        page_url:location.href,user_agent:navigator.userAgent
+      };
       const res=await fetch(ENDPOINT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(!res.ok) throw new Error('Falha no envio ('+res.status+')');
+      setStatus('Autorização enviada com sucesso.','ok');
       toast('Autorização enviada com sucesso.','ok');
-    }catch(e){ console.error(e); toast('Não foi possível enviar. Tente novamente.','err'); }
-    finally{ btn.disabled=false; }
+    }catch(e){
+      console.error(e);
+      setStatus('Não foi possível enviar. Tente novamente.','err');
+      toast('Não foi possível enviar. Tente novamente.','err');
+    }finally{
+      btn.disabled=false;
+    }
   }
 
   // ======= 2) Enviar por e-mail (mailto) =======
@@ -239,8 +284,8 @@
 
   // ======= Listeners =======
   document.getElementById('btnSend').addEventListener('click',sendAuthorization);
-  document.getElementById('btnEmail').addEventListener('click',()=>{ location.href=buildMailto(); });
-  document.getElementById('btnPrint').addEventListener('click',printPDF);
+  document.getElementById('btnEmail').addEventListener('click',()=>{ location.href=buildMailto(); setStatus('Abrindo seu e-mail com a mensagem preenchida…','ok'); });
+  document.getElementById('btnPrint').addEventListener('click',()=>{ printPDF(); setStatus('Abrindo a caixa de impressão (salvar em PDF).','ok'); });
 </script>
 </body>
 </html>
