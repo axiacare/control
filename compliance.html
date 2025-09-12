@@ -4,71 +4,117 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Central de Compliance – AxiaCare®</title>
-  <meta name="description" content="Central de Compliance da AxiaCare®: políticas, termos e documentos institucionais de integridade.">
+  <meta name="description" content="Central de Compliance da AxiaCare®: acesse a Política de Privacidade, Termos de Uso, Cookies e documentos de integridade.">
   <meta name="author" content="AxiaCare®">
   <link rel="canonical" href="https://hub.axcare.com.br/compliance">
   <link rel="icon" href="https://axcare.com.br/favicon.ico">
   <meta name="theme-color" content="#196396">
   <meta property="og:title" content="Central de Compliance – AxiaCare®">
-  <meta property="og:description" content="Política de Privacidade, Termos de Uso, Cookies e documentos de integridade da AxiaCare®.">
+  <meta property="og:description" content="Políticas e documentos institucionais de privacidade, termos e integridade.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://i.imgur.com/wY4gVDs.png">
   <meta property="og:site_name" content="AxiaCare®">
   <meta property="og:url" content="https://hub.axcare.com.br/compliance">
   <meta property="og:locale" content="pt_BR">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Central de Compliance – AxiaCare®">
-  <meta name="twitter:description" content="Políticas, termos e diretrizes institucionais da AxiaCare®.">
-  <meta name="twitter:image" content="https://i.imgur.com/wY4gVDs.png">
+
   <style>
     :root{
-      --brand-primary:#196396; --brand-accent:#2DBF7F; --brand-dark:#2d3445; --brand-off:#f8f5f0; --white:#ffffff;
-      --text:#1b1e24; --muted:#5b6470; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08);
-      --maxw:960px; --pad:24px; --focus:0 0 0 3px rgba(25,99,150,.25);
+      --brand-primary:#196396; --brand-accent:#2DBF7F; --brand-dark:#2d3445; --brand-off:#F6F4EF; --white:#ffffff;
+      --text:#1b1e24; --muted:#5b6470;
+      --radius:18px; --radius-sm:12px;
+      --shadow-sm:0 4px 12px rgba(13,38,76,.10);
+      --shadow-md:0 10px 28px rgba(13,38,76,.14);
+      --maxw:1040px; --pad:24px; --focus:0 0 0 3px rgba(25,99,150,.25);
     }
+
     *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-         font-size:16px;line-height:1.6;color:var(--text);
-         background:linear-gradient(180deg,#ffffff 0%,var(--brand-off) 100%);
-         padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
-    img{max-width:100%;height:auto;display:block}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    header{background:var(--white);border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:10;backdrop-filter:saturate(180%) blur(8px);padding-top:env(safe-area-inset-top)}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      font-size:16px; line-height:1.6; color:var(--text);
+      background:
+        radial-gradient(1400px 600px at -10% -20%, #e8f0f6 0%, transparent 60%),
+        radial-gradient(1200px 500px at 110% 0%, #ebf7f1 0%, transparent 60%),
+        var(--brand-off);
+      padding-left:env(safe-area-inset-left); padding-right:env(safe-area-inset-right);
+    }
+
+    img{max-width:100%; height:auto; display:block}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+
+    header{
+      background:rgba(255,255,255,.85); backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid rgba(0,0,0,.06); position:sticky; top:0; z-index:10; padding-top:env(safe-area-inset-top);
+    }
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:12px var(--pad); display:flex; align-items:center; gap:16px}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
     .brand img{height:56px}
-    .badge{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:.875rem;color:#fff;background:#196396;padding:8px 12px;border-radius:999px;box-shadow:var(--shadow);text-decoration:none}
+    .badge{
+      margin-left:auto; display:inline-flex; align-items:center; gap:10px;
+      font-size:.9rem; color:#fff; background:#196396; padding:10px 14px;
+      border-radius:999px; text-decoration:none; box-shadow:var(--shadow-sm)
+    }
     .badge:hover{background:#16537d}
-    main{max-width:var(--maxw);margin:32px auto;padding:0 var(--pad)}
-    .hero{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:clamp(20px,4vw,32px);box-shadow:var(--shadow)}
-    .hero h1{margin:0 0 8px;font-size:clamp(1.5rem,2.2vw + 1rem,1.875rem);color:var(--brand-primary)}
-    .hero p{margin:0;color:var(--muted);font-size:clamp(.95rem,1vw,1rem)}
-    .toc{margin:24px 0;background:linear-gradient(180deg,#fff,#f7fbff);border:1px solid rgba(25,99,150,.12);border-radius:var(--radius);padding:16px 20px}
-    .toc h2{margin:0 0 8px 0;font-size:1.125rem;color:var(--brand-dark)}
-    .toc ol{margin:0;padding-left:20px}
-    a{color:var(--brand-primary);text-decoration:none}
-    a:hover{color:var(--brand-accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:2px}
-    section.card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:clamp(16px,3.2vw,24px);margin:18px 0;box-shadow:var(--shadow)}
-    h2{font-size:clamp(1.15rem,1.4vw + .8rem,1.375rem);margin:0 0 8px;color:var(--brand-dark)}
-    .links{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
-    .btn{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--brand-primary);color:#fff;border-radius:10px;padding:14px 16px;border:1px solid rgba(0,0,0,.06);transition:transform .2s, box-shadow .2s;box-shadow:0 2px 10px rgba(25,99,150,.12)}
-    .btn span{font-weight:600}.btn small{opacity:.9}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(25,99,150,.18)}
-    .btn.em-breve{background:#f5f7fb;color:#637083}
-    .btn.em-breve:hover{background:#eef2f7}
-    footer{margin:42px 0 24px;text-align:center}
-    .footer{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px}
-    .footer .brand-mini{display:flex;align-items:center;gap:10px}
+
+    main{max-width:var(--maxw); margin:32px auto; padding:0 var(--pad)}
+    .frame{
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(13,38,76,.06);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-md);
+      padding:clamp(18px,4vw,28px);
+    }
+    .hero h1{margin:0 0 6px; font-size:clamp(1.6rem,2.3vw + 1rem,2rem); color:var(--brand-primary)}
+    .hero p{margin:0; color:var(--muted)}
+    .spacer{height:24px}
+
+    .section{margin:26px 0}
+    .section h2{margin:0 0 12px; color:var(--brand-dark); font-size:clamp(1.15rem,1.1vw + .9rem,1.35rem)}
+
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:760px){ .grid{grid-template-columns:1fr 1fr} }
+
+    .btn{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      background:linear-gradient(180deg,#1d6fa0,#195f86);
+      color:#fff; border-radius:14px; padding:16px 18px; text-decoration:none;
+      box-shadow:var(--shadow-sm); border:1px solid rgba(0,0,0,.06);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+    .btn:hover{transform:translateY(-2px); filter:saturate(1.05); box-shadow:0 12px 28px rgba(13,38,76,.20)}
+    .btn:focus{outline:none; box-shadow:var(--focus)}
+    .btn .title{font-weight:700}
+    .btn .chev{opacity:.9}
+
+    .btn.secondary{
+      background:linear-gradient(180deg,#eef4fa,#e6eef7); color:#1b2a3a;
+    }
+    .btn.secondary:hover{transform:translateY(-2px); box-shadow:0 10px 20px rgba(13,38,76,.12)}
+
+    .chev{display:inline-block; width:20px; height:20px}
+    .chev::before{
+      content:'›'; font-weight:700; font-size:22px; line-height:1; display:block;
+    }
+
+    footer{margin:42px 0 24px; text-align:center}
+    .footer{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:14px;
+      box-shadow:var(--shadow-sm); display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px
+    }
+    .footer .brand-mini{display:flex; align-items:center; gap:10px}
     .footer .brand-mini img{height:22px}
-    .footer .links{display:flex;gap:16px;flex-wrap:wrap;font-size:.92rem}
-    .footer .links a{color:var(--brand-primary)} .footer .links a:hover{color:var(--brand-accent);text-decoration:underline;text-underline-offset:2px}
-    .small{font-size:.85rem;color:var(--muted)}
-    @media (min-width:720px){ .links{grid-template-columns:1fr 1fr} }
-    .btn-top{position:fixed;right:16px;bottom:16px;background:var(--brand-primary);color:#fff;border:none;border-radius:999px;padding:12px 16px;cursor:pointer;box-shadow:var(--shadow);display:none}
-    .btn-top:focus{outline:none;box-shadow:var(--focus)}
+    .footer .links{display:flex; gap:16px; flex-wrap:wrap; font-size:.92rem}
+    .footer .links a{color:var(--brand-primary); text-decoration:none}
+    .footer .links a:hover{color:var(--brand-accent); text-decoration:underline; text-underline-offset:2px}
+    .small{font-size:.85rem; color:var(--muted)}
+
+    .btn-top{position:fixed; right:16px; bottom:16px; background:#196396; color:#fff; border:none; border-radius:999px; padding:12px 16px; display:none; box-shadow:var(--shadow-sm)}
     @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-    @media (max-width:420px){.brand img{height:50px}}
-    @media print{header,.toc,.btn-top{display:none !important} body{background:#fff} .hero,section.card{box-shadow:none;border-color:#ddd} a{color:#000;text-decoration:underline}}
+    @media print{header,.btn-top{display:none !important} body{background:#fff} .frame{box-shadow:none; border-color:#ddd}}
   </style>
+
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Central de Compliance – AxiaCare","about":{"@type":"Thing","name":"Compliance"},"publisher":{"@type":"Organization","name":"AxiaCare"},"inLanguage":"pt-BR"}
   </script>
@@ -84,62 +130,83 @@
 </header>
 
 <main>
-  <div class="hero" role="banner">
+  <div class="frame hero">
     <h1>Central de Compliance</h1>
     <p>Última atualização: 09/2025</p>
     <p>Documentos institucionais da AxiaCare® sobre privacidade, termos e integridade.</p>
   </div>
 
-  <nav class="toc" aria-label="Sumário">
-    <h2>Sumário</h2>
-    <ol>
-      <li><a href="#essenciais">Documentos essenciais</a></li>
-      <li><a href="#integridade">Integridade e Conduta</a></li>
-      <li><a href="#contato">Canal de Compliance</a></li>
-    </ol>
-  </nav>
+  <div class="spacer"></div>
 
-  <!-- Essenciais -->
-  <section id="essenciais" class="card" aria-labelledby="ess-title">
-    <h2 id="ess-title">Documentos essenciais</h2>
-    <div class="links" role="list">
+  <div class="frame section" id="essenciais">
+    <h2>Documentos essenciais</h2>
+    <div class="grid" role="list">
       <a class="btn" role="listitem" href="https://hub.axcare.com.br/privacidade">
-        <span>Política de Privacidade (LGPD)</span><small>hub.axcare.com.br/privacidade</small>
+        <span class="title">Política de Privacidade (LGPD)</span>
+        <span class="chev" aria-hidden="true"></span>
       </a>
       <a class="btn" role="listitem" href="https://hub.axcare.com.br/termos">
-        <span>Termos de Uso do Site</span><small>hub.axcare.com.br/termos</small>
+        <span class="title">Termos de Uso do Site</span>
+        <span class="chev" aria-hidden="true"></span>
       </a>
       <a class="btn" role="listitem" href="https://hub.axcare.com.br/cookies">
-        <span>Política de Cookies</span><small>hub.axcare.com.br/cookies</small>
+        <span class="title">Política de Cookies</span>
+        <span class="chev" aria-hidden="true"></span>
       </a>
       <a class="btn" role="listitem" href="https://hub.axcare.com.br/autorizacao-parceria">
-        <span>Autorização de Parceria – Uso de Marca</span><small>hub.axcare.com.br/autorizacao-parceria</small>
+        <span class="title">Autorização de Parceria – Uso de Marca</span>
+        <span class="chev" aria-hidden="true"></span>
       </a>
     </div>
-  </section>
+  </div>
 
-  <!-- Integridade -->
-  <section id="integridade" class="card" aria-labelledby="int-title">
-    <h2 id="int-title">Integridade e Conduta</h2>
-    <div class="links" role="list">
-      <a class="btn" role="listitem" href="https://hub.axcare.com.br/codigo-de-conduta"><span>Código de Ética e Conduta</span><small>…/codigo-de-conduta</small></a>
-      <a class="btn" role="listitem" href="https://hub.axcare.com.br/brindes"><span>Política de Brindes, Presentes e Hospitalidade</span><small>…/brindes</small></a>
-      <a class="btn" role="listitem" href="https://hub.axcare.com.br/anticorrupcao"><span>Política Anticorrupção e Antissuborno</span><small>…/anticorrupcao</small></a>
-      <a class="btn" role="listitem" href="https://hub.axcare.com.br/terceiros"><span>Política de Relacionamento com Terceiros e Due Diligence</span><small>…/terceiros</small></a>
-      <a class="btn" role="listitem" href="https://hub.axcare.com.br/integridade"><span>Cláusulas-Padrão de Integridade para Contratos</span><small>…/integridade</small></a>
+  <div class="spacer"></div>
+
+  <div class="frame section" id="integridade">
+    <h2>Integridade e Conduta</h2>
+    <div class="grid" role="list">
+      <a class="btn secondary" role="listitem" href="https://hub.axcare.com.br/codigo-de-conduta">
+        <span class="title">Código de Ética e Conduta</span>
+        <span class="chev" aria-hidden="true"></span>
+      </a>
+      <a class="btn secondary" role="listitem" href="https://hub.axcare.com.br/brindes">
+        <span class="title">Política de Brindes, Presentes e Hospitalidade</span>
+        <span class="chev" aria-hidden="true"></span>
+      </a>
+      <a class="btn secondary" role="listitem" href="https://hub.axcare.com.br/anticorrupcao">
+        <span class="title">Política Anticorrupção e Antissuborno</span>
+        <span class="chev" aria-hidden="true"></span>
+      </a>
+      <a class="btn secondary" role="listitem" href="https://hub.axcare.com.br/terceiros">
+        <span class="title">Política de Relacionamento com Terceiros e Due Diligence</span>
+        <span class="chev" aria-hidden="true"></span>
+      </a>
+      <a class="btn secondary" role="listitem" href="https://hub.axcare.com.br/integridade">
+        <span class="title">Cláusulas-Padrão de Integridade para Contratos</span>
+        <span class="chev" aria-hidden="true"></span>
+      </a>
     </div>
-  </section>
+  </div>
 
-  <!-- Canal -->
-  <section id="contato" class="card" aria-labelledby="contact-title">
-    <h2 id="contact-title">Canal de Compliance</h2>
+  <div class="spacer"></div>
+
+  <div class="frame section" id="contato">
+    <h2>Canal de Compliance</h2>
     <p>Dúvidas, sugestões ou reporte de potenciais não conformidades: <a href="mailto:compliance@axcare.com.br">compliance@axcare.com.br</a></p>
-  </section>
+  </div>
+
+  <div class="spacer"></div>
 
   <footer>
     <div class="footer">
       <div class="brand-mini"><img src="https://i.imgur.com/yAUQciP.png" alt="AxiaCare"><strong>AxiaCare® – Central de Compliance</strong></div>
-      <div class="links"><a href="https://axcare.com.br" rel="noopener">Site</a><span>•</span><a href="#topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Topo</a><span>•</span><a href="mailto:compliance@axcare.com.br">Compliance</a></div>
+      <div class="links">
+        <a href="https://axcare.com.br" rel="noopener">Site</a>
+        <span>•</span>
+        <a href="#topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Topo</a>
+        <span>•</span>
+        <a href="mailto:compliance@axcare.com.br">Compliance</a>
+      </div>
       <div class="small">© 2025 AxiaCare®. Todos os direitos reservados.</div>
     </div>
   </footer>
