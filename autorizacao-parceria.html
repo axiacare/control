@@ -70,6 +70,17 @@
     .toast.ok{border-color:rgba(15,122,72,.35)}
     .toast.err{border-color:rgba(166,27,27,.35)}
 
+    /* Destaque visual para Data/Hora (autoridade) */
+    .timestamp{
+      display:inline-flex; align-items:center; gap:8px;
+      background:#eef4fa; border:1px solid #cfe1f5; color:#0b3b63;
+      padding:6px 12px; border-radius:999px; font-weight:600; letter-spacing:.2px;
+    }
+    .timestamp::before{
+      content:""; width:8px; height:8px; border-radius:999px;
+      background:#2DBF7F; box-shadow:0 0 0 2px rgba(45,191,127,.18);
+    }
+
     footer{margin:42px 0 24px;text-align:center}
     .footer{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px}
     .footer .brand-mini{display:flex;align-items:center;gap:10px}
@@ -124,10 +135,9 @@
     <h2>4. Vigência</h2>
     <p>Vigência por prazo indeterminado, enquanto não houver revogação pela Autorizante ou comunicação da Autorizada em sentido diverso.</p>
 
-    <!-- Linha do hash (profissional) -->
+    <!-- Hash e Data/Hora -->
     <p class="small muted" id="docMeta">Registro técnico • SHA-256: (calculando…)</p>
-    <!-- Data/Hora em tempo real -->
-    <p class="small muted" id="liveTimer" aria-live="off">Data/Hora: --/--/---- --:--:--</p>
+    <p class="timestamp" id="liveTimer" aria-live="off">Data/Hora: --/--/-- --:--:--</p>
   </section>
 
   <section class="card">
@@ -212,7 +222,7 @@
   }
   atualizarHash();
 
-  // ======= Data/Hora em tempo real (estético, local) =======
+  // ======= Data/Hora em tempo real =======
   (function startClock(){
     const el=document.getElementById('liveTimer');
     function tick(){
@@ -260,10 +270,10 @@
     }
   }
 
-  // ======= 2) Enviar por e-mail (mailto) =======
-  function buildMailto(){
+  // ======= 2) Enviar por e-mail (mailto) – com hash e data/hora =======
+  function buildMailto(hash,when){
     const {identificacao,documento,email,obs}=getFormData();
-    const assunto=`Autorização de parceria – ${identificacao||'Parceiro'}`;
+    const assunto=`Parceria para uso de marca – ${identificacao||'Parceiro'}`;
     const corpo=[
       'Prezados,','',
       'Encaminho a autorização para uso do nome e logomarca como parceira institucional da AxiaCare®, nos termos publicados em https://hub.axcare.com.br/autorizacao-parceria.','',
@@ -271,7 +281,13 @@
       `Responsável/Razão social: ${identificacao||'-'}`,
       `CPF/CNPJ: ${documento||'-'}`,
       (obs? `Observações: ${obs}`:''),
-      '','Atenciosamente,',(identificacao||'—')
+      '',
+      'Rastreadores:',
+      `SHA-256: ${hash || '-'}`,
+      `Data/Hora do envio: ${when || '-'}`,
+      '',
+      'Atenciosamente,',
+      (identificacao||'—')
     ].join('\n');
     return `mailto:compliance@axcare.com.br?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}&cc=${encodeURIComponent(email)}`;
   }
@@ -281,8 +297,18 @@
 
   // ======= Listeners =======
   document.getElementById('btnSend').addEventListener('click',sendAuthorization);
-  document.getElementById('btnEmail').addEventListener('click',()=>{ location.href=buildMailto(); setStatus('Abrindo seu e-mail com a mensagem preenchida…','ok'); });
-  document.getElementById('btnPrint').addEventListener('click',()=>{ printPDF(); setStatus('Abrindo a caixa de impressão (salvar em PDF).','ok'); });
+
+  document.getElementById('btnEmail').addEventListener('click', async ()=>{
+    const hash=await atualizarHash();
+    const when=new Date().toLocaleString('pt-BR',{year:'2-digit',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+    location.href=buildMailto(hash,when);
+    setStatus('Abrindo seu e-mail com a mensagem preenchida…','ok');
+  });
+
+  document.getElementById('btnPrint').addEventListener('click',()=>{
+    printPDF();
+    setStatus('Abrindo a caixa de impressão (salvar em PDF).','ok');
+  });
 </script>
 </body>
 </html>
