@@ -27,106 +27,60 @@
 
   <style>
     :root{
-      --brand-primary:#196396;
-      --brand-accent:#2DBF7F;   /* hover/destaque padronizado */
-      --brand-dark:#2d3445;
-      --brand-off:#f8f5f0;
-      --white:#ffffff;
-
+      --brand-primary:#196396; --brand-accent:#2DBF7F; --brand-dark:#2d3445; --brand-off:#f8f5f0; --white:#ffffff;
       --text:#1b1e24; --muted:#5b6470;
-      --radius:16px; --radius-sm:12px;
-      --shadow:0 8px 24px rgba(0,0,0,.08);
-      --maxw:960px; --pad:24px;
-      --focus:0 0 0 3px rgba(25,99,150,.25);
+      --radius:16px; --radius-sm:12px; --shadow:0 8px 24px rgba(0,0,0,.08);
+      --maxw:960px; --pad:24px; --focus:0 0 0 3px rgba(25,99,150,.25);
     }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";font-size:16px;line-height:1.6;color:var(--text);background:linear-gradient(180deg,#ffffff 0%,var(--brand-off) 100%);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+    img{max-width:100%;height:auto;display:block}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-      font-size:16px; line-height:1.6; color:var(--text);
-      background:linear-gradient(180deg,#ffffff 0%, var(--brand-off) 100%);
-      padding-left: env(safe-area-inset-left);
-      padding-right: env(safe-area-inset-right);
-    }
+    header{background:var(--white);border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:10;backdrop-filter:saturate(180%) blur(8px);padding-top:env(safe-area-inset-top)}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .brand img{height:56px}
+    .badge{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:.875rem;color:var(--brand-dark);background:linear-gradient(180deg,#eaf7f1,#d5efe3);padding:8px 12px;border-radius:999px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.06);text-decoration:none}
+    .badge svg{height:16px;width:16px}
 
-    img{max-width:100%; height:auto; display:block}
-    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+    main{max-width:var(--maxw);margin:32px auto;padding:0 var(--pad)}
+    .hero{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:clamp(20px,4vw,32px);box-shadow:var(--shadow)}
+    .hero h1{margin:0 0 8px;font-size:clamp(1.5rem,2.2vw + 1rem,1.875rem);color:var(--brand-primary)}
+    .hero p{margin:0;color:var(--muted);font-size:clamp(.95rem,1vw,1rem)}
 
-    header{
-      background:var(--white);
-      border-bottom:1px solid rgba(0,0,0,.06);
-      position:sticky; top:0; z-index:10;
-      backdrop-filter:saturate(180%) blur(8px);
-      padding-top: env(safe-area-inset-top);
-    }
-    .wrap{max-width:var(--maxw); margin:0 auto; padding:12px var(--pad); display:flex; align-items:center; gap:16px}
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
-    .brand img{height:56px; width:auto}
-    .badge{margin-left:auto; display:inline-flex; align-items:center; gap:8px; font-size:.875rem; color:var(--brand-dark);
-      background:linear-gradient(180deg,#eaf7f1,#d5efe3); padding:8px 12px; border-radius:999px; box-shadow:var(--shadow);
-      border:1px solid rgba(0,0,0,.06); text-decoration:none}
-    .badge svg{height:16px; width:16px}
+    .toc{margin:24px 0;background:linear-gradient(180deg,#fff,#f7fbff);border:1px solid rgba(25,99,150,.12);border-radius:var(--radius);padding:16px 20px}
+    .toc h2{margin:0 0 8px 0;font-size:1.125rem;color:var(--brand-dark)}
+    .toc ol{margin:0;padding-left:20px}
 
-    main{max-width:var(--maxw); margin:32px auto; padding:0 var(--pad)}
-    .hero{background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius); padding:clamp(20px,4vw,32px); box-shadow:var(--shadow)}
-    .hero h1{margin:0 0 8px 0; font-size:clamp(1.5rem,2.2vw + 1rem,1.875rem); color:var(--brand-primary); line-height:1.3}
-    .hero p{margin:0; color:var(--muted); font-size:clamp(.95rem,1vw,1rem)}
+    a{color:var(--brand-primary);text-decoration:none}
+    a:hover{color:var(--brand-accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:2px}
 
-    .toc{margin:24px 0; background:linear-gradient(180deg,#fff,#f7fbff); border:1px solid rgba(25,99,150,.12); border-radius:var(--radius); padding:16px 20px}
-    .toc h2{margin:0 0 8px 0; font-size:1.125rem; color:var(--brand-dark)}
-    .toc ol{margin:0; padding-left:20px}
+    section.card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:clamp(16px,3.2vw,24px);margin:18px 0;box-shadow:var(--shadow)}
+    h2{font-size:clamp(1.15rem,1.4vw + .8rem,1.375rem);margin:0 0 8px;color:var(--brand-dark)}
+    p{margin:0 0 10px} ul{margin:0 0 10px 18px} li{margin:6px 0}
 
-    a{color:var(--brand-primary); text-decoration:none}
-    a:hover{color:var(--brand-accent); text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px}
-
-    section.card{background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:var(--radius); padding:clamp(16px,3.2vw,24px); margin:18px 0; box-shadow:var(--shadow)}
-    h2{font-size:clamp(1.15rem,1.4vw + .8rem,1.375rem); margin:0 0 8px 0; color:var(--brand-dark)}
-    p{margin:0 0 10px 0}
-    ul{margin:0 0 10px 18px}
-    li{margin:6px 0}
-
-    .links{display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px}
-    .btn{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      background:var(--brand-primary); color:#fff; border-radius:10px; padding:14px 16px;
-      border:1px solid rgba(0,0,0,.06);
-      transition:transform .2s ease, background-color .2s ease, box-shadow .2s ease;
-      box-shadow:0 2px 10px rgba(25,99,150,.12);
-    }
-    .btn span{font-weight:600}
-    .btn small{opacity:.9}
-    .btn:hover{transform:translateY(-2px); background:var(--brand-primary); box-shadow:0 6px 18px rgba(25,99,150,.18)}
-    .btn:focus{outline:none; box-shadow:var(--focus)}
-    .btn.secondary{background:#eef4fa; color:var(--brand-dark)}
-    .btn.secondary:hover{background:#e0ecf7}
-
-    .pill{
-      display:inline-block; padding:4px 10px; border-radius:999px; font-size:.78rem;
-      background:#fff; color:#334; border:1px solid rgba(0,0,0,.12)
-    }
-    .pill.soon{background:#fff; border-color:rgba(0,0,0,.1); color:#5b6470}
-
-    footer{margin:42px 0 24px; text-align:center}
-    .footer{background:#ffffff; border:1px solid rgba(0,0,0,.06); border-radius:14px; box-shadow:var(--shadow);
-      display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px}
-    .footer .brand-mini{display:flex; align-items:center; gap:10px}
-    .footer .brand-mini img{height:22px}
-    .footer .links{display:flex; gap:16px; flex-wrap:wrap; font-size:.92rem}
-    .footer .links a{color:var(--brand-primary)}
-    .footer .links a:hover{color:var(--brand-accent); text-decoration:underline; text-underline-offset:2px}
-    .small{font-size:.85rem; color:var(--muted)}
-
-    @media (min-width:720px){ .links{grid-template-columns:1fr 1fr} }
-    .btn.em-breve{background:#f5f7fb; color:#637083}
+    .links{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+    .btn{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--brand-primary);color:#fff;border-radius:10px;padding:14px 16px;border:1px solid rgba(0,0,0,.06);transition:transform .2s, background-color .2s, box-shadow .2s;box-shadow:0 2px 10px rgba(25,99,150,.12)}
+    .btn span{font-weight:600} .btn small{opacity:.9}
+    .btn:hover{transform:translateY(-2px);background:var(--brand-primary);box-shadow:0 6px 18px rgba(25,99,150,.18)}
+    .btn:focus{outline:none;box-shadow:var(--focus)}
+    .btn.em-breve{background:#f5f7fb;color:#637083}
     .btn.em-breve:hover{background:#eef2f7}
 
-    .btn-top{position:fixed; right:16px; bottom:16px; background:var(--brand-primary); color:#fff; border:none; border-radius:999px; padding:12px 16px; cursor:pointer; box-shadow:var(--shadow); display:none; touch-action:manipulation}
-    .btn-top:focus{outline:none; box-shadow:var(--focus)}
-    @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
-    @media (max-width:420px){ .brand img{height:50px} }
-    @media print{ header,.toc,.btn-top{display:none !important}; body{background:#fff}; .hero, section.card{box-shadow:none; border-color:#ddd}; a{color:#000; text-decoration:underline} }
+    footer{margin:42px 0 24px;text-align:center}
+    .footer{background:#ffffff;border:1px solid rgba(0,0,0,.06);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px}
+    .footer .brand-mini{display:flex;align-items:center;gap:10px}
+    .footer .brand-mini img{height:22px}
+    .footer .links{display:flex;gap:16px;flex-wrap:wrap;font-size:.92rem}
+    .footer .links a{color:var(--brand-primary)} .footer .links a:hover{color:var(--brand-accent);text-decoration:underline;text-underline-offset:2px}
+    .small{font-size:.85rem;color:var(--muted)}
+
+    @media (min-width:720px){ .links{grid-template-columns:1fr 1fr} }
+    .btn-top{position:fixed;right:16px;bottom:16px;background:var(--brand-primary);color:#fff;border:none;border-radius:999px;padding:12px 16px;cursor:pointer;box-shadow:var(--shadow);display:none;touch-action:manipulation}
+    .btn-top:focus{outline:none;box-shadow:var(--focus)}
+    @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+    @media (max-width:420px){.brand img{height:50px}}
+    @media print{header,.toc,.btn-top{display:none !important} body{background:#fff} .hero,section.card{box-shadow:none;border-color:#ddd} a{color:#000;text-decoration:underline}}
   </style>
 
   <script type="application/ld+json">
@@ -134,124 +88,101 @@
   </script>
 </head>
 <body>
-  <header id="topo">
-    <div class="wrap">
-      <a class="brand" href="https://axcare.com.br" aria-label="AxiaCare">
-        <img src="https://i.imgur.com/yAUQciP.png" alt="AxiaCare" decoding="async" fetchpriority="high">
-        <span class="sr-only">AxiaCare®</span>
+<header id="topo">
+  <div class="wrap">
+    <a class="brand" href="https://axcare.com.br" aria-label="AxiaCare">
+      <img src="https://i.imgur.com/yAUQciP.png" alt="AxiaCare" decoding="async" fetchpriority="high"><span class="sr-only">AxiaCare®</span>
+    </a>
+    <a class="badge" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener" title="Lei Geral de Proteção de Dados (LGPD)">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z" stroke="#196396" stroke-width="1.5"/><path d="M9.5 12l2 2 4-4" stroke="#196396" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      LGPD
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="hero" role="banner">
+    <h1>Central de Compliance</h1>
+    <p>Última atualização: 09/2025</p>
+    <p class="small">Documentos institucionais da AxiaCare® relacionados à privacidade, termos e integridade. Padrão visual alinhado à Política de Privacidade.</p>
+  </div>
+
+  <nav class="toc" aria-label="Sumário">
+    <h2>Sumário</h2>
+    <ol>
+      <li><a href="#essenciais">Documentos essenciais</a></li>
+      <li><a href="#integridade">Integridade e Conduta</a></li>
+      <li><a href="#contato">Canal de Compliance</a></li>
+    </ol>
+  </nav>
+
+  <!-- Grupo A – Essenciais -->
+  <section id="essenciais" class="card" aria-labelledby="ess-title">
+    <h2 id="ess-title">Documentos essenciais</h2>
+    <div class="links" role="list">
+      <a class="btn" role="listitem" href="https://hub.axcare.com.br/privacidade">
+        <span>Política de Privacidade (LGPD)</span><small>hub.axcare.com.br/privacidade</small>
       </a>
-      <a class="badge" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener noreferrer" title="Lei Geral de Proteção de Dados (LGPD)">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z" stroke="#196396" stroke-width="1.5"/>
-          <path d="M9.5 12l2 2 4-4" stroke="#196396" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        LGPD
+      <a class="btn" role="listitem" href="https://hub.axcare.com.br/termos">
+        <span>Termos de Uso do Site</span><small>hub.axcare.com.br/termos</small>
+      </a>
+      <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/cookies">
+        <span>Política de Cookies</span><small class="pill">em breve</small>
+      </a>
+      <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/avisos">
+        <span>Avisos de Privacidade</span><small class="pill">em breve</small>
       </a>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <div class="hero" role="banner">
-      <h1>Central de Compliance</h1>
-      <p>Última atualização: 04/09/2025</p>
-      <p class="small">Esta página reúne os documentos institucionais da AxiaCare® relacionados à privacidade, termos e integridade. Todos os itens seguem o padrão visual e técnico adotado na Política de Privacidade.</p>
+  <!-- Grupo B – Integridade e Conduta -->
+  <section id="integridade" class="card" aria-labelledby="int-title">
+    <h2 id="int-title">Integridade e Conduta</h2>
+    <p class="small">Diretrizes de ética, anticorrupção e relacionamento com terceiros.</p>
+    <div class="links" role="list">
+      <a class="btn" role="listitem" href="https://hub.axcare.com.br/codigo-de-conduta">
+        <span>Código de Ética e Conduta</span><small>hub.axcare.com.br/codigo-de-conduta</small>
+      </a>
+      <a class="btn" role="listitem" href="https://hub.axcare.com.br/brindes">
+        <span>Política de Brindes, Presentes e Hospitalidade</span><small>hub.axcare.com.br/brindes</small>
+      </a>
+      <a class="btn" role="listitem" href="https://hub.axcare.com.br/anticorrupcao">
+        <span>Política Anticorrupção e Antissuborno</span><small>hub.axcare.com.br/anticorrupcao</small>
+      </a>
+      <a class="btn" role="listitem" href="https://hub.axcare.com.br/terceiros">
+        <span>Política de Relacionamento com Terceiros e Due Diligence</span><small>hub.axcare.com.br/terceiros</small>
+      </a>
+      <a class="btn" role="listitem" href="https://hub.axcare.com.br/autorizacao-parceria">
+        <span>Autorização de Parceria – Uso de Marca</span><small>hub.axcare.com.br/autorizacao-parceria</small>
+      </a>
+      <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/clausulas-integridade">
+        <span>Cláusulas-Padrão de Integridade para Contratos</span><small class="pill">em breve</small>
+      </a>
     </div>
+  </section>
 
-    <nav class="toc" aria-label="Sumário">
-      <h2>Sumário</h2>
-      <ol>
-        <li><a href="#essenciais">Documentos essenciais</a></li>
-        <li><a href="#integridade">Integridade e Conduta</a></li>
-        <li><a href="#contato">Canal de Compliance</a></li>
-      </ol>
-    </nav>
+  <!-- Canal -->
+  <section id="contato" class="card" aria-labelledby="contact-title">
+    <h2 id="contact-title">Canal de Compliance</h2>
+    <p>Dúvidas, sugestões ou reporte de potenciais não conformidades:</p>
+    <p><a href="mailto:compliance@axcare.com.br">compliance@axcare.com.br</a></p>
+  </section>
 
-    <!-- Grupo A – Essenciais -->
-    <section id="essenciais" class="card" aria-labelledby="ess-title">
-      <h2 id="ess-title">Documentos essenciais</h2>
-      <div class="links" role="list">
-        <a class="btn" role="listitem" href="https://hub.axcare.com.br/privacidade">
-          <span>Política de Privacidade (LGPD)</span>
-          <small>hub.axcare.com.br/privacidade</small>
-        </a>
-        <a class="btn" role="listitem" href="https://hub.axcare.com.br/termos">
-          <span>Termos de Uso do Site</span>
-          <small>hub.axcare.com.br/termos</small>
-        </a>
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/cookies">
-          <span>Política de Cookies</span>
-          <small class="pill soon">em breve</small>
-        </a>
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/avisos">
-          <span>Avisos de Privacidade</span>
-          <small class="pill soon">em breve</small>
-        </a>
-      </div>
-    </section>
+  <footer>
+    <div class="footer">
+      <div class="brand-mini"><img src="https://i.imgur.com/yAUQciP.png" alt="AxiaCare"><strong>AxiaCare® – Central de Compliance</strong></div>
+      <div class="links"><a href="https://axcare.com.br" rel="noopener">Site</a><span>•</span><a href="#topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Topo</a><span>•</span><a href="mailto:compliance@axcare.com.br">Compliance</a></div>
+      <div class="small">© 2025 AxiaCare®. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+</main>
 
-    <!-- Grupo B – Integridade e Conduta -->
-    <section id="integridade" class="card" aria-labelledby="int-title">
-      <h2 id="int-title">Integridade e Conduta</h2>
-      <p class="small">Diretrizes que atendem a requisitos de ética, anticorrupção e relacionamento com terceiros.</p>
-      <div class="links" role="list">
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/codigo-de-conduta">
-          <span>Código de Ética e Conduta</span>
-          <small class="pill soon">em breve</small>
-        </a>
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/brindes">
-          <span>Política de Brindes, Presentes e Hospitalidade</span>
-          <small class="pill soon">em breve</small>
-        </a>
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/anticorrupcao">
-          <span>Política Anticorrupção e Antissuborno</span>
-          <small class="pill soon">em breve</small>
-        </a>
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/conflitos">
-          <span>Política de Conflitos de Interesses</span>
-          <small class="pill soon">em breve</small>
-        </a>
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/terceiros">
-          <span>Política de Relacionamento com Terceiros e Due Diligence</span>
-          <small class="pill soon">em breve</small>
-        </a>
-        <a class="btn em-breve" role="listitem" href="https://hub.axcare.com.br/clausulas-integridade">
-          <span>Cláusulas-Padrão de Integridade para Contratos</span>
-          <small class="pill soon">em breve</small>
-        </a>
-      </div>
-    </section>
-
-    <!-- Grupo D – Canal (apenas mailto, conforme solicitado) -->
-    <section id="contato" class="card" aria-labelledby="contact-title">
-      <h2 id="contact-title">Canal de Compliance</h2>
-      <p>Dúvidas, sugestões ou reporte de potenciais não conformidades podem ser enviados para:</p>
-      <p><a href="mailto:compliance@axcare.com.br">compliance@axcare.com.br</a></p>
-    </section>
-
-    <footer>
-      <div class="footer">
-        <div class="brand-mini">
-          <img src="https://i.imgur.com/yAUQciP.png" alt="AxiaCare">
-          <strong>AxiaCare® – Central de Compliance</strong>
-        </div>
-        <div class="links">
-          <a href="https://axcare.com.br" rel="noopener">Site</a>
-          <span>•</span>
-          <a href="#topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Topo</a>
-          <span>•</span>
-          <a href="mailto:compliance@axcare.com.br">Compliance</a>
-        </div>
-        <div class="small">© 2025 AxiaCare®. Todos os direitos reservados.</div>
-      </div>
-    </footer>
-  </main>
-
-  <button class="btn-top" id="btnTop" aria-label="Voltar ao topo">Topo</button>
-  <script>
-    const btn=document.getElementById('btnTop');
-    const onScroll=()=>{btn.style.display=window.scrollY>320?'block':'none';};
-    window.addEventListener('scroll',onScroll);
-    btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-  </script>
+<button class="btn-top" id="btnTop" aria-label="Voltar ao topo">Topo</button>
+<script>
+  const btn=document.getElementById('btnTop');
+  const onScroll=()=>{btn.style.display=window.scrollY>320?'block':'none';};
+  window.addEventListener('scroll',onScroll);
+  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>
