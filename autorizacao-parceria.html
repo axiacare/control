@@ -10,7 +10,6 @@
   <link rel="icon" href="https://axcare.com.br/favicon.ico">
   <meta name="theme-color" content="#196396">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Autorização de Parceria – Citação de Marca | AxiaCare®">
   <meta property="og:description" content="Autorização para citação como parceira institucional (nome e logomarca) em canais oficiais da AxiaCare®.">
   <meta property="og:type" content="website">
@@ -37,7 +36,6 @@
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
     .brand img{height:60px}
     .badge{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:.875rem;color:var(--brand-dark);background:linear-gradient(180deg,#eaf7f1,#d5efe3);padding:8px 12px;border-radius:999px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.06);text-decoration:none}
-    .badge svg{height:16px;width:16px}
 
     main{max-width:var(--maxw);margin:32px auto;padding:0 var(--pad)}
     .hero{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:clamp(20px,4vw,32px);box-shadow:var(--shadow)}
@@ -70,29 +68,26 @@
     .toast.ok{border-color:rgba(15,122,72,.35)}
     .toast.err{border-color:rgba(166,27,27,.35)}
 
-    /* Destaque visual para Data/Hora (autoridade) */
+    /* Hash monoespaçado e móvel-friendly */
+    #docMeta{
+      display:inline-block;max-width:100%;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+      font-size:.9rem;background:#f7fafc;border:1px solid #e2ecf6;color:#34405a;
+      padding:8px 10px;border-radius:10px;overflow-wrap:anywhere;word-break:break-word;
+    }
+    /* Data/Hora (autoridade) */
     .timestamp{
-      display:inline-flex; align-items:center; gap:8px;
-      background:#eef4fa; border:1px solid #cfe1f5; color:#0b3b63;
-      padding:6px 12px; border-radius:999px; font-weight:600; letter-spacing:.2px;
+      display:inline-flex;align-items:center;gap:8px;background:#eef4fa;border:1px solid #cfe1f5;color:#0b3b63;
+      padding:6px 12px;border-radius:999px;font-weight:600;letter-spacing:.2px;margin-top:6px
     }
-    .timestamp::before{
-      content:""; width:8px; height:8px; border-radius:999px;
-      background:#2DBF7F; box-shadow:0 0 0 2px rgba(45,191,127,.18);
+    .timestamp::before{content:"";width:8px;height:8px;border-radius:999px;background:#2DBF7F;box-shadow:0 0 0 2px rgba(45,191,127,.18)}
+
+    /* Badge mais leve em mobile */
+    @media (max-width:480px){
+      .badge{background:transparent;color:#196396;border:1px solid #d5e6f6;padding:6px 10px;font-size:.85rem;border-radius:999px;box-shadow:none}
+      .wrap{gap:10px}.brand img{height:46px}
+      .btn-top{right:12px;bottom:12px}
     }
-
-    footer{margin:42px 0 24px;text-align:center}
-    .footer{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px}
-    .footer .brand-mini{display:flex;align-items:center;gap:10px}
-    .footer .brand-mini img{height:22px}
-    .footer .links{display:flex;gap:16px;flex-wrap:wrap;font-size:.92rem}
-    .footer .links a{color:var(--brand-primary)} .footer .links a:hover{color:var(--brand-accent);text-decoration:underline;text-underline-offset:2px}
-
-    .btn-top{position:fixed;right:16px;bottom:16px;background:var(--brand-primary);color:#fff;border:none;border-radius:999px;padding:12px 16px;cursor:pointer;box-shadow:var(--shadow);display:none;touch-action:manipulation}
-    .btn-top:focus{outline:none;box-shadow:var(--focus)}
-    @media (max-width:760px){.wrap{padding:8px 16px}.grid{grid-template-columns:1fr}}
-    @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-    @media print{header,.btn-top,.actions{display:none !important}body{background:#fff}.hero,section.card{box-shadow:none;border-color:#ddd}a{color:#000;text-decoration:underline}}
   </style>
 
   <script type="application/ld+json">
@@ -135,7 +130,6 @@
     <h2>4. Vigência</h2>
     <p>Vigência por prazo indeterminado, enquanto não houver revogação pela Autorizante ou comunicação da Autorizada em sentido diverso.</p>
 
-    <!-- Hash e Data/Hora -->
     <p class="small muted" id="docMeta">Registro técnico • SHA-256: (calculando…)</p>
     <p class="timestamp" id="liveTimer" aria-live="off">Data/Hora: --/--/-- --:--:--</p>
   </section>
@@ -190,10 +184,8 @@
 <button class="btn-top" id="btnTop" aria-label="Voltar ao topo">Topo</button>
 
 <script>
-  // ======= Config =======
   const ENDPOINT_URL = "https://hook.us2.make.com/zuj8lwlscyofvu2iwdlefbp6pll7uw0i";
 
-  // ======= UX básico =======
   const btnTop=document.getElementById('btnTop');
   window.addEventListener('scroll',()=>{btnTop.style.display=window.scrollY>320?'block':'none';});
   btnTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
@@ -202,13 +194,8 @@
   function toast(msg,type='ok'){ toastEl.textContent=msg; toastEl.className='toast '+type; toastEl.style.display='block'; setTimeout(()=>toastEl.style.display='none',4000); }
 
   const statusEl=document.getElementById('status');
-  function setStatus(msg,type='ok'){
-    statusEl.className='status '+type;
-    statusEl.textContent=msg;
-    statusEl.focus({preventScroll:false});
-  }
+  function setStatus(msg,type='ok'){ statusEl.className='status '+type; statusEl.textContent=msg; statusEl.focus({preventScroll:false}); }
 
-  // ======= Hash do bloco "termo" =======
   async function sha256(message){
     const msgUint8=new TextEncoder().encode(message);
     const hashBuffer=await crypto.subtle.digest('SHA-256',msgUint8);
@@ -222,7 +209,6 @@
   }
   atualizarHash();
 
-  // ======= Data/Hora em tempo real =======
   (function startClock(){
     const el=document.getElementById('liveTimer');
     function tick(){
@@ -230,11 +216,9 @@
       const str=agora.toLocaleString('pt-BR',{year:'2-digit',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
       el.textContent='Data/Hora: '+str;
     }
-    tick();
-    setInterval(tick,1000);
+    tick(); setInterval(tick,1000);
   })();
 
-  // ======= Coleta/validação =======
   function getFormData(){
     const identificacao=(document.getElementById('identificacao').value||'').trim();
     const documento=(document.getElementById('documento').value||'').trim();
@@ -244,14 +228,11 @@
   }
   function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
 
-  // ======= 1) Enviar autorização (POST JSON) =======
   async function sendAuthorization(){
     const btn=document.getElementById('btnSend');
     const {identificacao,documento,email,obs}=getFormData();
     if(!identificacao||!documento||!email||!validEmail(email)){
-      setStatus('Preencha os campos obrigatórios com e-mail válido.','err');
-      toast('Preencha os campos obrigatórios com e-mail válido.','err');
-      return;
+      setStatus('Preencha os campos obrigatórios com e-mail válido.','err'); toast('Preencha os campos obrigatórios com e-mail válido.','err'); return;
     }
     btn.disabled=true;
     try{
@@ -259,18 +240,12 @@
       const payload={type:'autorizacao_parceria',timestamp:new Date().toISOString(),identificacao,documento,email,obs,hash,page_url:location.href,user_agent:navigator.userAgent};
       const res=await fetch(ENDPOINT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(!res.ok) throw new Error('Falha no envio ('+res.status+')');
-      setStatus('Autorização enviada com sucesso.','ok');
-      toast('Autorização enviada com sucesso.','ok');
+      setStatus('Autorização enviada com sucesso.','ok'); toast('Autorização enviada com sucesso.','ok');
     }catch(e){
-      console.error(e);
-      setStatus('Não foi possível enviar. Tente novamente.','err');
-      toast('Não foi possível enviar. Tente novamente.','err');
-    }finally{
-      btn.disabled=false;
-    }
+      console.error(e); setStatus('Não foi possível enviar. Tente novamente.','err'); toast('Não foi possível enviar. Tente novamente.','err');
+    }finally{ btn.disabled=false; }
   }
 
-  // ======= 2) Enviar por e-mail (mailto) – com hash e data/hora =======
   function buildMailto(hash,when){
     const {identificacao,documento,email,obs}=getFormData();
     const assunto=`Parceria para uso de marca – ${identificacao||'Parceiro'}`;
@@ -292,23 +267,16 @@
     return `mailto:compliance@axcare.com.br?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}&cc=${encodeURIComponent(email)}`;
   }
 
-  // ======= 3) Salvar em PDF (impressão nativa) =======
   function printPDF(){ window.print(); }
 
-  // ======= Listeners =======
   document.getElementById('btnSend').addEventListener('click',sendAuthorization);
-
   document.getElementById('btnEmail').addEventListener('click', async ()=>{
     const hash=await atualizarHash();
     const when=new Date().toLocaleString('pt-BR',{year:'2-digit',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
     location.href=buildMailto(hash,when);
     setStatus('Abrindo seu e-mail com a mensagem preenchida…','ok');
   });
-
-  document.getElementById('btnPrint').addEventListener('click',()=>{
-    printPDF();
-    setStatus('Abrindo a caixa de impressão (salvar em PDF).','ok');
-  });
+  document.getElementById('btnPrint').addEventListener('click',()=>{ printPDF(); setStatus('Abrindo a caixa de impressão (salvar em PDF).','ok'); });
 </script>
 </body>
 </html>
