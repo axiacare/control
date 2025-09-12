@@ -62,12 +62,10 @@
     .btn.ghost{background:#efefef}
     .btn:disabled{opacity:.6;cursor:not-allowed}
 
-    /* Status inline (acessível) */
     .status{margin-top:12px;border-radius:10px;padding:10px 12px;border:1px solid transparent}
-    .status.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
-    .status.err{background:var(--err-bg);border-color:var(--err);color:var(--err)}
+    .status.ok{background:#e9f7f1;border-color:#0f7a48;color:#0f7a48}
+    .status.err{background:#fdecec;border-color:#a61b1b;color:#a61b1b}
 
-    /* Toast */
     .toast{position:fixed;right:16px;bottom:16px;background:#fff;border:1px solid rgba(0,0,0,.18);box-shadow:var(--shadow);border-radius:10px;padding:10px 12px;display:none;z-index:9999;min-width:240px}
     .toast.ok{border-color:rgba(15,122,72,.35)}
     .toast.err{border-color:rgba(166,27,27,.35)}
@@ -126,10 +124,10 @@
     <h2>4. Vigência</h2>
     <p>Vigência por prazo indeterminado, enquanto não houver revogação pela Autorizante ou comunicação da Autorizada em sentido diverso.</p>
 
-    <!-- Linha do hash (mais profissional) -->
+    <!-- Linha do hash (profissional) -->
     <p class="small muted" id="docMeta">Registro técnico • SHA-256: (calculando…)</p>
-    <!-- Cronômetro discreto -->
-    <p class="small muted" id="liveTimer" aria-live="off">Cronômetro: 00:00:00</p>
+    <!-- Data/Hora em tempo real -->
+    <p class="small muted" id="liveTimer" aria-live="off">Data/Hora: --/--/---- --:--:--</p>
   </section>
 
   <section class="card">
@@ -214,12 +212,16 @@
   }
   atualizarHash();
 
-  // ======= Cronômetro discreto =======
-  (function startTimer(){
+  // ======= Data/Hora em tempo real (estético, local) =======
+  (function startClock(){
     const el=document.getElementById('liveTimer');
-    const fmt=s=>String(s).padStart(2,'0');
-    const t0=Date.now();
-    setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);el.textContent='Cronômetro: '+fmt(s/3600|0)+':'+fmt((s%3600)/60|0)+':'+fmt(s%60);},1000);
+    function tick(){
+      const agora=new Date();
+      const str=agora.toLocaleString('pt-BR',{year:'2-digit',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+      el.textContent='Data/Hora: '+str;
+    }
+    tick();
+    setInterval(tick,1000);
   })();
 
   // ======= Coleta/validação =======
@@ -244,12 +246,7 @@
     btn.disabled=true;
     try{
       const hash=await atualizarHash();
-      const payload={
-        type:'autorizacao_parceria',
-        timestamp:new Date().toISOString(),
-        identificacao,documento,email,obs,hash,
-        page_url:location.href,user_agent:navigator.userAgent
-      };
+      const payload={type:'autorizacao_parceria',timestamp:new Date().toISOString(),identificacao,documento,email,obs,hash,page_url:location.href,user_agent:navigator.userAgent};
       const res=await fetch(ENDPOINT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(!res.ok) throw new Error('Falha no envio ('+res.status+')');
       setStatus('Autorização enviada com sucesso.','ok');
