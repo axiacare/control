@@ -116,4 +116,4 @@ Hub institucional de compliance; propostas comerciais escaláveis; educação ex
 
 ---
 
-**Conclusão:** Esta versão 3.0.0 do guia inclui o fluxo completo para integração com repositórios GitHub (control, crm, hub) e o manual (`guia_html.md`), reforçando a governança e modularidade da AxView. Use-o como referência definitiva para o GPT Custom **AxIntel™ | HTML AxView™**, para DevMode e para qualquer automação via API.
+**Conclusão:** Esta versão 3.0.0 do guia inclui o fluxo completo para integração com repositórios GitHub (control, comercial, hub) e o manual (`guia_html.md`), reforçando a governança e modularidade da AxView. Use-o como referência definitiva para o GPT Custom **AxIntel™ | HTML AxView™**, para DevMode e para qualquer automação via API.
