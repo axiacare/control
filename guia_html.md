@@ -102,7 +102,7 @@ Hub institucional de compliance; propostas comerciais escaláveis; educação ex
 
 ## 10. Organização e versionamento
 
-1. **Estrutura de repositório**: mantenha assets (`css`, `js`) e templates em pastas dedicadas; crie subpastas para hubs (`hub.axcare.com.br`, `hub.medvalor.med.br`) e para propostas (`comercial.axcare.com.br`).
+1. **Estrutura de repositório**: mantenha assets (`css`, `js`) e templates em pastas dedicadas; crie subpastas para hubs (`hub.axcare.com.br`, `hub.medvalor.med.br`) e para propostas (`crm.axcare.com.br`).
 2. **Versionamento semântico**: use `MAJOR.MINOR.PATCH`.
 3. **Changelog**: registre alterações em cada update.
 4. **CI/CD**: adote pipelines de lint, checker de links e preview em GitHub Pages.
@@ -116,4 +116,4 @@ Hub institucional de compliance; propostas comerciais escaláveis; educação ex
 
 ---
 
-**Conclusão:** Esta versão 3.0.0 do guia inclui o fluxo completo para integração com repositórios GitHub (control, comercial, hub) e o manual (`guia_html.md`), reforçando a governança e modularidade da AxView. Use-o como referência definitiva para o GPT Custom **AxIntel™ | HTML AxView™**, para DevMode e para qualquer automação via API.
+**Conclusão:** Esta versão 3.0.0 do guia inclui o fluxo completo para integração com repositórios GitHub (control, crm, hub) e o manual (`guia_html.md`), reforçando a governança e modularidade da AxView. Use-o como referência definitiva para o GPT Custom **AxIntel™ | HTML AxView™**, para DevMode e para qualquer automação via API.
